@@ -137,8 +137,7 @@ interface MonitoringForm {
 export default function MiningOperationsPage() {
   const [activeTab, setActiveTab] = useState<'concessions' | 'surveys' | 'environmental' | 'reports'>('concessions')
   const [showConcessionForm, setShowConcessionForm] = useState(false)
-  const [showSurveyForm, setShowSurveyForm] = useState(false)
-  const [showMonitoringForm, setShowMonitoringForm] = useState(false)
+
   const [editingConcession, setEditingConcession] = useState<MiningConcession | null>(null)
   const [editingSurvey, setEditingSurvey] = useState<GeologicalSurvey | null>(null)
   const [editingMonitoring, setEditingMonitoring] = useState<EnvironmentalMonitoring | null>(null)
@@ -154,12 +153,12 @@ export default function MiningOperationsPage() {
     orderBy: { column: 'created_at', ascending: false }
   })
 
-  const { data: surveys, insert: insertSurvey, update: updateSurvey } = useRealtimeTable<GeologicalSurvey>({
+  const { insert: insertSurvey, update: updateSurvey } = useRealtimeTable<GeologicalSurvey>({
     table: 'geological_surveys',
     orderBy: { column: 'survey_date', ascending: false }
   })
 
-  const { data: monitoring, insert: insertMonitoring, update: updateMonitoring } = useRealtimeTable<EnvironmentalMonitoring>({
+  const { insert: insertMonitoring, update: updateMonitoring } = useRealtimeTable<EnvironmentalMonitoring>({
     table: 'environmental_monitoring',
     orderBy: { column: 'monitoring_date', ascending: false }
   })
@@ -186,7 +185,7 @@ export default function MiningOperationsPage() {
     notes: ''
   })
 
-  const [surveyForm, setSurveyForm] = useState<SurveyForm>({
+  const [surveyForm] = useState<SurveyForm>({
     concession_id: '',
     survey_date: '',
     survey_type: 'exploration',
@@ -203,7 +202,7 @@ export default function MiningOperationsPage() {
     surveyor_company: ''
   })
 
-  const [monitoringForm, setMonitoringForm] = useState<MonitoringForm>({
+  const [monitoringForm] = useState<MonitoringForm>({
     concession_id: '',
     monitoring_date: '',
     water_quality: {

@@ -71,7 +71,7 @@ export default function ExecutiveDashboard() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedPeriod, setSelectedPeriod] = useState('30d');
-  const [refreshInterval, setRefreshInterval] = useState(30000); // 30 seconds
+  const [refreshInterval] = useState(30000); // 30 seconds
 
   useEffect(() => {
     loadDashboardData();

@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { Modal } from '@/components/ui/Modal';
-import { Input } from '@/components/ui/Input';
+
 import { useToastSuccess, useToastError } from '@/components/ui/Toast';
 import {
   CheckCircle,
@@ -14,9 +14,9 @@ import {
   User,
   MessageSquare,
   ArrowRight,
-  Eye,
+
   FileText,
-  AlertTriangle
+
 } from 'lucide-react';
 
 interface ApprovalStep {
@@ -120,7 +120,7 @@ export default function ApprovalWorkflow({
       // Refresh the page or update the component state
       window.location.reload();
 
-    } catch (error) {
+    } catch {
       toastError('Failed to process workflow action');
     } finally {
       setLoading(false);

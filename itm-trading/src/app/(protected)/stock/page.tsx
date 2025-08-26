@@ -93,7 +93,7 @@ export default function StockPage() {
         toastSuccess('Stock item added successfully');
       }
       closeModal();
-    } catch (error) {
+    } catch {
       toastError(editingItem ? 'Failed to update stock item' : 'Failed to add stock item');
     }
   };
@@ -119,8 +119,8 @@ export default function StockPage() {
         const result = await remove(id);
         if (result.error) throw result.error;
         toastSuccess('Stock item deleted successfully');
-      } catch (error) {
-        toastError('Failed to delete stock item');
+          } catch {
+      toastError('Failed to delete stock item');
       }
     }
   };

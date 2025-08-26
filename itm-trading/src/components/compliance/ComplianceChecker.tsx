@@ -6,7 +6,7 @@ import {
   CheckCircle, 
   Clock, 
   FileText, 
-  Globe, 
+ 
   TrendingUp,
   DollarSign,
   Eye,

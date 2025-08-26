@@ -14,9 +14,13 @@
   },
   "overrides": [
     {
-      "files": ["scripts/**/*.js"],
+      "files": ["scripts/**/*.js", "*.js"],
+      "env": {
+        "node": true
+      },
       "rules": {
-        "@typescript-eslint/no-require-imports": "off"
+        "@typescript-eslint/no-require-imports": "off",
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
   ]

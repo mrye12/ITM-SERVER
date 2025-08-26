@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Bell, X, Check, AlertTriangle, Info, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useRealtimeTable } from '@/hooks/useRealtimeTable';

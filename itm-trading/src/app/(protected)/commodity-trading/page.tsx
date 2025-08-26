@@ -114,22 +114,22 @@ export default function CommodityTradingPage() {
   const { toast } = useToast()
 
   // Real-time data hooks
-  const { data: commodityPrices, loading: pricesLoading, insert: insertPrice, update: updatePrice, remove: removePrice } = useRealtimeTable<CommodityPrice>({
+  const { data: commodityPrices, loading: pricesLoading, insert: insertPrice, update: updatePrice } = useRealtimeTable<CommodityPrice>({
     table: 'commodity_prices',
     orderBy: { column: 'price_date', ascending: false }
   })
 
-  const { data: tradingPositions, loading: positionsLoading, insert: insertPosition, update: updatePosition, remove: removePosition } = useRealtimeTable<TradingPosition>({
+  const { data: tradingPositions, loading: positionsLoading, insert: insertPosition, update: updatePosition } = useRealtimeTable<TradingPosition>({
     table: 'trading_positions',
     orderBy: { column: 'opened_at', ascending: false }
   })
 
-  const { data: qualityTests, loading: qualityLoading } = useRealtimeTable<QualityTest>({
+  const { data: qualityTests } = useRealtimeTable<QualityTest>({
     table: 'quality_tests',
     orderBy: { column: 'test_date', ascending: false }
   })
 
-  const { data: commodities, loading: commoditiesLoading } = useRealtimeTable({
+  const { data: commodities } = useRealtimeTable({
     table: 'commodities',
     orderBy: { column: 'name', ascending: true }
   })
