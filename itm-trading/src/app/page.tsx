@@ -7,10 +7,8 @@ import {
   Truck, 
   Package,
   CheckCircle,
-  Zap,
   ArrowRight,
   Sparkles,
-  Building2,
   BarChart3
 } from 'lucide-react';
 

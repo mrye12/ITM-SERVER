@@ -103,7 +103,7 @@ export default function AdminPage() {
         
         setMetrics(mockMetrics)
       } catch {
-        console.error('Error fetching metrics:', errors)
+        console.error('Error fetching metrics')
       }
     }
 
@@ -215,7 +215,7 @@ export default function AdminPage() {
       })
       setResult(result)
       toast.success("Superadmin created successfully")
-    } catch (error) {
+    } catch {
       setResult({ success: false, message: 'Failed to create superadmin' })
       toast.error("Failed to create superadmin")
     }
@@ -249,7 +249,7 @@ export default function AdminPage() {
       const results = await bulkCreateUsers(sampleUsers)
       setResult({ success: true, data: results })
       toast.success("Sample users created successfully")
-    } catch (error) {
+    } catch {
       setResult({ success: false, message: 'Failed to create sample users' })
       toast.error("Failed to create sample users")
     }
@@ -262,7 +262,7 @@ export default function AdminPage() {
       const result = await seedInitialData()
       setResult(result)
       toast.success("Initial data seeded successfully")
-    } catch (error) {
+    } catch {
       setResult({ success: false, message: 'Failed to seed data' })
       toast.error("Failed to seed initial data")
     }

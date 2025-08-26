@@ -14,16 +14,16 @@ import {
   DollarSign, 
   BarChart3,
   Package,
-  Globe,
+
   Target,
   Activity,
-  Download,
+
   RefreshCw,
   Plus,
   Edit2,
-  Trash2,
+
   Search,
-  Filter
+
 } from 'lucide-react'
 
 interface CommodityPrice {
@@ -387,7 +387,7 @@ export default function CommodityTradingPage() {
           ].map(({ key, label, icon: Icon }) => (
             <button
               key={key}
-              onClick={() => setActiveTab(key as any)}
+              onClick={() => setActiveTab(key as 'pricing' | 'positions' | 'quality' | 'analysis')}
               className={`${
                 activeTab === key
                   ? 'border-blue-500 text-blue-600'
@@ -834,7 +834,7 @@ export default function CommodityTradingPage() {
               </label>
               <select
                 value={positionForm.contract_type}
-                onChange={(e) => setPositionForm(prev => ({ ...prev, contract_type: e.target.value as any }))}
+                onChange={(e) => setPositionForm(prev => ({ ...prev, contract_type: e.target.value as 'spot' | 'forward' | 'futures' }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="spot">Spot</option>
@@ -848,7 +848,7 @@ export default function CommodityTradingPage() {
               </label>
               <select
                 value={positionForm.position_type}
-                onChange={(e) => setPositionForm(prev => ({ ...prev, position_type: e.target.value as any }))}
+                onChange={(e) => setPositionForm(prev => ({ ...prev, position_type: e.target.value as 'long' | 'short' }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="long">Long</option>

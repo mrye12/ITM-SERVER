@@ -54,7 +54,7 @@ export async function getUserRole(): Promise<RoleCode | null> {
     .maybeSingle()
 
   if (error || !data) return null
-  // @ts-ignore
+  // @ts-expect-error - Supabase returns different structure depending on join
   return data.roles.code as RoleCode
 }
 

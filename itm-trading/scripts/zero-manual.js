@@ -154,7 +154,7 @@ async function ensureTablesExist() {
       if (!error) {
         existingTables.push(table)
       }
-    } catch (e) {
+    } catch {
       // Table doesn't exist
     }
   }
@@ -199,12 +199,12 @@ async function createProfessionalTablesFromExisting() {
       await supabase.from('customers').delete().eq('id', '00000000-0000-0000-0000-000000000001')
       
       console.log('    ✅ Customers table auto-created')
-    } catch (e) {
+    } catch {
       // Table creation failed, will use alternative approach
     }
     
     return true
-  } catch (error) {
+  } catch {
     console.warn('  ⚠️  Could not auto-create tables, will use existing ones')
     return false
   }
@@ -224,7 +224,7 @@ async function seedDataFlexibly(existingTables) {
       if (['customers', 'suppliers', 'products', 'sales_orders', 'office_stock'].includes(table)) {
         try {
           await supabase.from(table).delete().neq('id', '00000000-0000-0000-0000-000000000000')
-        } catch (e) {
+        } catch {
           // Continue if delete fails
         }
       }
@@ -375,7 +375,7 @@ async function seedBasicData() {
                 role: userData.role
               })
           }
-        } catch (error) {
+        } catch {
           // User might already exist
         }
       }
