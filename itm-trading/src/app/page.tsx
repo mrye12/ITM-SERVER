@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { getSessionUser } from '@/lib/supabase/auth';
 import { 
   Shield, 
   FileText, 
@@ -14,7 +16,14 @@ import {
   BarChart3
 } from 'lucide-react';
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Check if user is already logged in
+  const user = await getSessionUser()
+  
+  // If logged in, redirect to dashboard
+  if (user) {
+    redirect('/dashboard')
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100">
       {/* Hero Section */}
@@ -22,7 +31,7 @@ export default function HomePage() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
             <Sparkles className="h-4 w-4" />
-            TAHAP 7 - COMPREHENSIVE SYSTEM
+            ENTERPRISE GRADE MINING SYSTEM
           </div>
           
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
@@ -156,8 +165,8 @@ export default function HomePage() {
 
         {/* Footer */}
         <div className="mt-16 text-center text-sm text-gray-500">
-          <p>ITM Trading Enterprise System • TAHAP 7 Complete Integration</p>
-          <p className="mt-1">Powered by Next.js 15.5.0 • Supabase • Hugging Face AI</p>
+          <p>ITM Trading Enterprise System • Complete Mining Operations Platform</p>
+          <p className="mt-1">Powered by Next.js 15.5.0 • Supabase • AI Analytics • Real-time Monitoring</p>
         </div>
       </div>
     </div>

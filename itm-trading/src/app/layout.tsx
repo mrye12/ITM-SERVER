@@ -6,7 +6,7 @@ export const metadata = { title: "ITM Trading" }
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id">
-      <body>
+      <body className="antialiased bg-gray-50">
         <RealtimeProvider>
           {children}
         </RealtimeProvider>

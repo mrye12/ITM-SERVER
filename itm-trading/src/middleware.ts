@@ -36,7 +36,7 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser()
 
   // Define protected paths that require authentication
-  const protectedPaths = ['/dashboard', '/sales', '/shipments', '/stock', '/invoices', '/files', '/admin', '/orders', '/fuel', '/shipment', '/equipment']
+  const protectedPaths = ['/dashboard', '/sales', '/shipments', '/stock', '/invoices', '/files', '/admin', '/orders', '/fuel', '/shipment', '/equipment', '/hr', '/commodity-trading', '/mining-ops', '/purchase', '/smelter-sales', '/nickel', '/compliance', '/finance', '/reports', '/executive-dashboard']
   const isProtectedPath = protectedPaths.some(path => request.nextUrl.pathname.startsWith(path))
 
   // Redirect to login if not authenticated and trying to access protected routes
