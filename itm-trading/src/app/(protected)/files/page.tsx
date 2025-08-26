@@ -8,7 +8,7 @@ interface FileActivity {
   file_id: string
   user_id: string
   action: string
-  details: any
+  details: Record<string, unknown>
   created_at: string
 }
 
@@ -20,8 +20,7 @@ export default function FilesPage() {
     loadFiles,
     uploadFile,
     deleteFile,
-    downloadFile,
-    getFileUrl
+    downloadFile
   } = useFileManager()
 
   const { data: activities } = useRealtimeTable<FileActivity>({
@@ -29,14 +28,13 @@ export default function FilesPage() {
     orderBy: { column: 'created_at', ascending: false }
   })
 
-  const [selectedFiles, setSelectedFiles] = useState<string[]>([])
-  const [currentFolder, setCurrentFolder] = useState('/')
+
   const [isDragging, setIsDragging] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    loadFiles(currentFolder)
-  }, [currentFolder, loadFiles])
+    loadFiles('/')
+  }, [loadFiles])
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files || [])

@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { supabaseBrowser } from "@/lib/supabase/client"
 import { useRealtimeTable } from "@/hooks/useRealtimeTable"
@@ -107,13 +107,7 @@ export default function FuelManagementPage() {
       : 0
   }
 
-  const monthlyStats = {
-    totalVolume: thisMonthEntries.reduce((sum, entry) => sum + entry.volume, 0),
-    totalCost: thisMonthEntries.reduce((sum, entry) => sum + entry.total_cost, 0),
-    avgPrice: thisMonthEntries.length > 0 
-      ? thisMonthEntries.reduce((sum, entry) => sum + entry.price_per_liter, 0) / thisMonthEntries.length 
-      : 0
-  }
+
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">

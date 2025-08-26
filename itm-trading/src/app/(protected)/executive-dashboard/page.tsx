@@ -7,8 +7,7 @@ import DataTable from '@/components/ui/DataTable';
 import RealtimeChart from '@/components/dashboard/RealtimeChart';
 import { Button } from '@/components/ui/Button';
 import {
-  TrendingUp,
-  TrendingDown,
+
   DollarSign,
   Package,
   Truck,
@@ -18,11 +17,11 @@ import {
   Clock,
   Target,
   BarChart3,
-  PieChart,
+
   Activity,
   FileText,
   Globe,
-  Calendar
+
 } from 'lucide-react';
 
 interface DashboardData {

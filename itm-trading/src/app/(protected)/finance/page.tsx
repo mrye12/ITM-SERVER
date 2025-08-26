@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { supabaseBrowser } from "@/lib/supabase/client"
 import { useRealtimeTable } from "@/hooks/useRealtimeTable"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts'
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts'
 
 interface Expense {
   id: string
@@ -65,7 +65,7 @@ const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#8dd1e1', '#d084d0'
 export default function FinanceExpensePage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedPeriod, setSelectedPeriod] = useState('month')
-  const [selectedCategory, setSelectedCategory] = useState<string>('')
+
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([])
   const [filterStatus, setFilterStatus] = useState<string>('all')
   
@@ -176,7 +176,7 @@ export default function FinanceExpensePage() {
 
   // Calculate statistics
   const totalExpenses = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0)
-  const approvedExpenses = filteredExpenses.filter(e => e.status === 'approved').reduce((sum, e) => sum + e.amount, 0)
+
   const paidExpenses = filteredExpenses.filter(e => e.status === 'paid').reduce((sum, e) => sum + e.amount, 0)
   const pendingExpenses = filteredExpenses.filter(e => e.status === 'pending').reduce((sum, e) => sum + e.amount, 0)
 
@@ -208,12 +208,7 @@ export default function FinanceExpensePage() {
     }
   }).reverse()
 
-  // Status distribution
-  const statusDistribution = statusOptions.map(status => ({
-    name: status.label,
-    value: filteredExpenses.filter(e => e.status === status.value).reduce((sum, e) => sum + e.amount, 0),
-    count: filteredExpenses.filter(e => e.status === status.value).length
-  })).filter(item => item.value > 0)
+
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
