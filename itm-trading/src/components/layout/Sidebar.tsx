@@ -80,10 +80,30 @@ export default function Sidebar() {
       ]
     },
     {
-      title: "💰 Finance & Compliance",
+      title: "📈 Analytics & Intelligence",
       items: [
-        { href: "/finance", label: "Financial Management", icon: "💰", roles: ["admin", "manager"] },
+        { href: "/analytics", label: "Business Intelligence", icon: "📈", roles: ["admin", "manager"] },
+        { href: "/executive-dashboard", label: "Executive Dashboard", icon: "📊", roles: ["admin", "manager"] },
+        { href: "/nickel", label: "Nickel Price Monitor", icon: "💎", roles: ["admin", "manager", "staff"] },
+      ]
+    },
+    {
+      title: "💰 Financial Management",
+      items: [
+        { href: "/finance", label: "Financial Overview", icon: "💰", roles: ["admin", "manager"] },
+        { href: "/finance/accounting", label: "Accounting", icon: "📚", roles: ["admin", "finance_manager", "accountant"] },
+        { href: "/finance/budget", label: "Budget & Planning", icon: "📋", roles: ["admin", "finance_manager"] },
+        { href: "/finance/banking", label: "Banking & Payments", icon: "🏦", roles: ["admin", "finance_manager"] },
+        { href: "/finance/taxes", label: "Tax Management", icon: "📄", roles: ["admin", "finance_manager", "accountant"] },
+      ]
+    },
+    {
+      title: "🔒 Security & Compliance",
+      items: [
+        { href: "/security/overview", label: "Security Overview", icon: "🔒", roles: ["admin", "security_admin"] },
+        { href: "/security/sessions", label: "Session Management", icon: "🔑", roles: ["admin", "security_admin"] },
         { href: "/compliance", label: "AI Compliance", icon: "🛡️", roles: ["admin", "manager", "staff"] },
+        { href: "/compliance/audit", label: "Audit Trail", icon: "📋", roles: ["admin", "compliance_officer", "auditor"] },
         { href: "/reports", label: "Analytics & Reports", icon: "📊", roles: ["admin", "manager"] },
       ]
     },
