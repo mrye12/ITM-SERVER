@@ -5,18 +5,18 @@ import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { useRealtimeTable } from '@/hooks/useRealtimeTable'
 import { useToast } from '@/hooks/useToast'
-import { 
-  BarChart3, 
-  TrendingUp, 
-  TrendingDown, 
-  DollarSign, 
-  Users, 
-  Package, 
+import {
+  BarChart3,
+  TrendingUp,
+  TrendingDown,
+  DollarSign,
+  Users,
+  Package,
   Activity,
   Download,
   Filter,
   Calendar,
-  Refresh,
+  RefreshCw,
   Eye,
   PieChart
 } from 'lucide-react'
@@ -225,7 +225,7 @@ export default function AnalyticsPage() {
             disabled={refreshing}
             className="flex items-center gap-2"
           >
-            <Refresh className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
             Refresh
           </Button>
 
