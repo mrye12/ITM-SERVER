@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import { getSessionUser } from '@/lib/supabase/auth';
 import { 
   Shield, 
   FileText, 
@@ -16,14 +14,8 @@ import {
   BarChart3
 } from 'lucide-react';
 
-export default async function HomePage() {
-  // Check if user is already logged in
-  const user = await getSessionUser()
-  
-  // If logged in, redirect to dashboard
-  if (user) {
-    redirect('/dashboard')
-  }
+export default function HomePage() {
+  // Let middleware handle authentication redirects
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100">
       {/* Hero Section */}

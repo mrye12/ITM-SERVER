@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       action: 'login' | 'logout' | 'custom'
       target_table?: string
       target_id?: string  
-      payload?: any
+      payload?: Record<string, unknown>
     }
 
     // Get client IP and user agent for enhanced auditing

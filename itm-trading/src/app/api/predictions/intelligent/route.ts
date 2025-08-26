@@ -34,7 +34,7 @@ async function generateIntelligentPrediction(commodity: string, months: number =
       .limit(10);
 
     // Base prediction parameters
-    let baseParameters = {
+    const baseParameters = {
       trend_sensitivity: 1.0,
       seasonal_weight: 1.0,
       market_factor: 1.0,

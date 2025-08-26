@@ -72,7 +72,7 @@ interface QualityTest {
   lab_name: string
   lab_certificate_number?: string
   test_type: string
-  test_results: any
+  test_results: Record<string, unknown>
   moisture_content?: number
   passed: boolean
   grade_achieved?: string

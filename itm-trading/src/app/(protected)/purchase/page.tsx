@@ -883,7 +883,7 @@ export default function PurchasePage() {
               <h3 className="text-lg font-semibold">Confirm Delete</h3>
             </div>
             <p className="text-gray-600 mb-6">
-              Are you sure you want to delete purchase "{purchaseToDelete?.purchase_number}"? This action cannot be undone.
+              Are you sure you want to delete purchase &quot;{purchaseToDelete?.purchase_number}&quot;? This action cannot be undone.
             </p>
             <div className="flex justify-end gap-3">
               <Button

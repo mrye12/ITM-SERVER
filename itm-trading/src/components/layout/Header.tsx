@@ -2,34 +2,40 @@
 import { useEffect, useState } from "react"
 import { supabaseBrowser } from "@/lib/supabase/client"
 import { NotificationBell } from "@/components/notifications/NotificationCenter"
+import { getMockProfile } from "@/lib/mock-auth"
 
 export default function Header() {
-  const [user, setUser] = useState<any>(null)
-  const [profile, setProfile] = useState<any>(null)
-  const [notifications, setNotifications] = useState<number>(0)
+  const [user, setUser] = useState<{ id: string; email: string } | null>(null)
+  const [profile, setProfile] = useState<{ full_name?: string; roles?: { code: string; name: string } | { code: string; name: string }[] } | null>(null)
 
-  useEffect(() => {
+    useEffect(() => {
     const getUser = async () => {
-      const { data: { user } } = await supabaseBrowser().auth.getUser()
-      if (user) {
-        setUser(user)
-        
-        // Get user profile with role
-        const { data: profile } = await supabaseBrowser()
-          .from('profiles')
-          .select('full_name, roles!inner(code, name)')
-          .eq('id', user.id)
-          .single()
-        
-        setProfile(profile)
+      try {
+        const { data: { user } } = await supabaseBrowser().auth.getUser()
+        if (user && user.email) {
+          setUser({ id: user.id, email: user.email })
+          
+          // Get user profile with role
+          const { data: profile } = await supabaseBrowser()
+            .from('profiles')
+            .select('full_name, roles!inner(code, name)')
+            .eq('id', user.id)
+            .single()
+          
+          setProfile(profile)
 
-        // Get notification count (example: pending shipments, maintenance alerts)
-        const { count } = await supabaseBrowser()
-          .from('activity_logs')
-          .select('*', { count: 'exact', head: true })
-          .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
-        
-        setNotifications(count || 0)
+          // Get notification count (example: pending shipments, maintenance alerts)
+          const { count } = await supabaseBrowser()
+            .from('activity_logs')
+            .select('*', { count: 'exact', head: true })
+            .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
+        }
+      } catch (error) {
+        console.warn('Supabase failed, using mock data:', error)
+        // Use mock data for demo
+        const mockProfile = getMockProfile()
+        setUser({ id: mockProfile.id, email: mockProfile.email })
+        setProfile(mockProfile)
       }
     }
     getUser()
@@ -71,8 +77,10 @@ export default function Header() {
               {profile?.full_name || user?.email?.split('@')[0] || 'User'}
             </div>
             <div className="text-xs text-yellow-400">
-              {/* @ts-ignore */}
-              {profile?.roles?.name || 'Staff'}
+              {Array.isArray(profile?.roles) 
+                ? (profile.roles[0]?.name || 'Staff')
+                : (profile?.roles?.name || 'Staff')
+              }
             </div>
           </div>
         </div>

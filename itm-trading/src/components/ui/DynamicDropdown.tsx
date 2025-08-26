@@ -154,7 +154,7 @@ export function DynamicDropdown({
               
               {filteredOptions.length === 0 && searchTerm && (
                 <div className="px-4 py-3 text-gray-500 text-center">
-                  No options found for "{searchTerm}"
+                  No options found for &quot;{searchTerm}&quot;
                 </div>
               )}
             </div>

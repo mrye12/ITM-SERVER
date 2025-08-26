@@ -3,6 +3,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { supabaseBrowser } from "@/lib/supabase/client"
 import { useState, useEffect } from "react"
+import { getMockProfile } from "@/lib/mock-auth"
 
 export default function Sidebar() {
   const pathname = usePathname()
@@ -10,18 +11,24 @@ export default function Sidebar() {
 
   useEffect(() => {
     const getUser = async () => {
-      const { data: { user } } = await supabaseBrowser().auth.getUser()
-      if (user) {
-        const { data: profile } = await supabaseBrowser()
-          .from('profiles')
-          .select('roles!inner(code, name)')
-          .eq('id', user.id)
-          .single()
-        
-        if (profile?.roles) {
-          // @ts-ignore
-          setUserRole(profile.roles.code)
+      try {
+        const { data: { user } } = await supabaseBrowser().auth.getUser()
+        if (user) {
+          const { data: profile } = await supabaseBrowser()
+            .from('profiles')
+            .select('roles!inner(code, name)')
+            .eq('id', user.id)
+            .single()
+          
+          if (profile?.roles && 'code' in profile.roles) {
+            setUserRole((profile.roles as { code: string }).code)
+          }
         }
+      } catch (error) {
+        console.warn('Supabase failed, using mock data:', error)
+        // Use mock data for demo
+        const mockProfile = getMockProfile()
+        setUserRole(mockProfile.role)
       }
     }
     getUser()

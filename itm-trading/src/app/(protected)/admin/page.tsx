@@ -1,8 +1,8 @@
 "use client"
 import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
-import { useRealtimeTable } from "@/hooks/useRealtimeTable"
-import { supabaseBrowser } from "@/lib/supabase/client"
+
+// import { supabaseBrowser } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/Button"
 import { Modal } from "@/components/ui/Modal"
 import { useToast } from "@/hooks/useToast"
@@ -37,7 +37,7 @@ interface SystemMetrics {
 
 export default function AdminPage() {
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<any>(null)
+  const [result, setResult] = useState<{ success?: boolean; message?: string; data?: unknown } | null>(null)
   const [showUserForm, setShowUserForm] = useState(false)
   const [editingUser, setEditingUser] = useState<User | null>(null)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -90,8 +90,6 @@ export default function AdminPage() {
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const supabase = supabaseBrowser()
-        
         // This would normally fetch real data from Supabase
         // For demo, using mock data
         const mockMetrics: SystemMetrics = {
@@ -104,8 +102,8 @@ export default function AdminPage() {
         }
         
         setMetrics(mockMetrics)
-      } catch (error) {
-        console.error('Error fetching metrics:', error)
+      } catch {
+        console.error('Error fetching metrics:', errors)
       }
     }
 
@@ -137,8 +135,8 @@ export default function AdminPage() {
 
       reset({ status: 'active', role: 'staff' })
       setShowUserForm(false)
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : 'Failed to save user')
+          } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Failed to save user')
     }
   }
 
@@ -161,8 +159,8 @@ export default function AdminPage() {
       toast.success("User deleted successfully")
       setShowDeleteModal(false)
       setUserToDelete(null)
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : 'Failed to delete user')
+          } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Failed to delete user')
     }
   }
 
@@ -174,7 +172,7 @@ export default function AdminPage() {
       setUsers(updatedUsers)
       
       toast.success("User status updated")
-    } catch (err) {
+          } catch {
       toast.error("Failed to update user status")
     }
   }
@@ -218,7 +216,7 @@ export default function AdminPage() {
       setResult(result)
       toast.success("Superadmin created successfully")
     } catch (error) {
-      setResult({ success: false, error: 'Failed to create superadmin' })
+      setResult({ success: false, message: 'Failed to create superadmin' })
       toast.error("Failed to create superadmin")
     }
     setLoading(false)
@@ -249,10 +247,10 @@ export default function AdminPage() {
       ]
 
       const results = await bulkCreateUsers(sampleUsers)
-      setResult({ success: true, users: results })
+      setResult({ success: true, data: results })
       toast.success("Sample users created successfully")
     } catch (error) {
-      setResult({ success: false, error: 'Failed to create sample users' })
+      setResult({ success: false, message: 'Failed to create sample users' })
       toast.error("Failed to create sample users")
     }
     setLoading(false)
@@ -265,7 +263,7 @@ export default function AdminPage() {
       setResult(result)
       toast.success("Initial data seeded successfully")
     } catch (error) {
-      setResult({ success: false, error: 'Failed to seed data' })
+      setResult({ success: false, message: 'Failed to seed data' })
       toast.error("Failed to seed initial data")
     }
     setLoading(false)

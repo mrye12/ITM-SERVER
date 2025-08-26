@@ -632,7 +632,7 @@ export default function HRPage() {
       >
         <div className="space-y-4">
           <p className="text-gray-600">
-            Are you sure you want to delete employee "{employeeToDelete?.full_name}"? 
+            Are you sure you want to delete employee &quot;{employeeToDelete?.full_name}&quot;? 
             This action cannot be undone.
           </p>
           <div className="flex justify-end gap-3">

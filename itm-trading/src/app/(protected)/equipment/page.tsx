@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { supabaseBrowser } from "@/lib/supabase/client"
 import { useRealtimeTable } from "@/hooks/useRealtimeTable"
