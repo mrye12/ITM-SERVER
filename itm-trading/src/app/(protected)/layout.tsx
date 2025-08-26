@@ -1,7 +1,9 @@
 import Sidebar from "@/components/layout/Sidebar"
 import Header from "@/components/layout/Header"
+import MobileHeader from "@/components/layout/MobileHeader"
 import { ToastProvider } from "@/components/ui/Toast"
 import { requireUser } from "@/lib/auth"
+import MobileLayoutClient from "@/components/layout/MobileLayoutClient"
 
 export default async function ProtectedLayout({ children }: { children: React.ReactNode }) {
   try {
@@ -21,22 +23,9 @@ export default async function ProtectedLayout({ children }: { children: React.Re
   
   return (
     <ToastProvider>
-      <div className="min-h-screen bg-gray-50">
-        <div className="flex">
-          {/* Sidebar */}
-          <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 shadow-lg">
-            <Sidebar />
-          </aside>
-          
-          {/* Main Content */}
-          <div className="flex-1 ml-64">
-            <Header />
-            <main className="p-6 min-h-screen">
-              {children}
-            </main>
-          </div>
-        </div>
-      </div>
+      <MobileLayoutClient>
+        {children}
+      </MobileLayoutClient>
     </ToastProvider>
   )
 }

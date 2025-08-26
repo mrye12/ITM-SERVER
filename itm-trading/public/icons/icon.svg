@@ -1,0 +1,42 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="text" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="512" height="512" rx="64" fill="url(#bg)"/>
+  
+  <!-- Border -->
+  <rect x="8" y="8" width="496" height="496" rx="56" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+  
+  <!-- ITM Text -->
+  <text x="256" y="220" font-family="Arial Black, sans-serif" font-size="120" font-weight="900" text-anchor="middle" fill="url(#text)">ITM</text>
+  
+  <!-- Subtitle -->
+  <text x="256" y="280" font-family="Arial, sans-serif" font-size="36" font-weight="600" text-anchor="middle" fill="rgba(30,41,59,0.8)">TRADING</text>
+  
+  <!-- Mining Icon -->
+  <g transform="translate(256, 320)">
+    <!-- Pickaxe -->
+    <path d="M-30,-20 L-20,-30 L20,10 L10,20 Z" fill="rgba(30,41,59,0.7)"/>
+    <path d="M-35,-15 L-25,-25 L-15,-15 L-25,-5 Z" fill="rgba(30,41,59,0.9)"/>
+    
+    <!-- Gems -->
+    <circle cx="30" cy="15" r="8" fill="#10b981"/>
+    <circle cx="45" cy="0" r="6" fill="#3b82f6"/>
+    <circle cx="35" cy="-15" r="7" fill="#8b5cf6"/>
+  </g>
+  
+  <!-- Enterprise Badge -->
+  <rect x="320" y="80" width="120" height="30" rx="15" fill="rgba(255,255,255,0.9)"/>
+  <text x="380" y="100" font-family="Arial, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#1e293b">ENTERPRISE</text>
+</svg>

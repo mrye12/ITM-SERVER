@@ -3,9 +3,15 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { supabaseBrowser } from "@/lib/supabase/client"
 import { useState, useEffect } from "react"
+import { X } from "lucide-react"
 
+interface SidebarProps {
+  isOpen?: boolean
+  onClose?: () => void
+  isMobile?: boolean
+}
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen = true, onClose, isMobile = false }: SidebarProps) {
   const pathname = usePathname()
   const [userRole, setUserRole] = useState<string>('')
 
@@ -122,20 +128,59 @@ export default function Sidebar() {
     }
   ]
 
+  // Mobile overlay backdrop
+  if (isMobile && !isOpen) return null
+
+  const handleLinkClick = () => {
+    if (isMobile && onClose) {
+      onClose()
+    }
+  }
+
   return (
-    <div className="h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col shadow-2xl">
-      {/* Header Logo */}
-      <div className="p-6 border-b border-yellow-500/30">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center shadow-lg">
-            <span className="text-black font-bold text-xl">ITM</span>
-          </div>
-          <div>
-            <div className="font-bold text-xl text-white">Infinity Trade</div>
-            <div className="text-sm text-yellow-400 font-medium">Mineral Trading</div>
+    <>
+      {/* Mobile Overlay */}
+      {isMobile && isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={onClose}
+        />
+      )}
+      
+      {/* Sidebar */}
+      <div className={`
+        ${isMobile 
+          ? 'fixed inset-y-0 left-0 z-50 w-80 transform transition-transform duration-300 ease-in-out' 
+          : 'h-screen'
+        }
+        ${isMobile && !isOpen ? '-translate-x-full' : 'translate-x-0'}
+        bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white flex flex-col shadow-2xl
+      `}>
+        {/* Header Logo */}
+        <div className="p-6 border-b border-yellow-500/30">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center shadow-lg">
+                <span className="text-black font-bold text-xl">ITM</span>
+              </div>
+              <div>
+                <div className="font-bold text-xl text-white">Infinity Trade</div>
+                <div className="text-sm text-yellow-400 font-medium">Mineral Trading</div>
+              </div>
+            </div>
+            
+            {/* Close button for mobile */}
+            {isMobile && (
+              <button
+                onClick={onClose}
+                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800/50 transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            )}
           </div>
         </div>
-      </div>
 
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-4 overflow-y-auto">
@@ -161,6 +206,7 @@ export default function Sidebar() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={handleLinkClick}
                     className={`group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 ${
                       isActive(item.href)
                         ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold shadow-lg transform scale-105'
@@ -193,6 +239,7 @@ export default function Sidebar() {
           <span>Logout</span>
         </button>
       </div>
-    </div>
+      </div>
+    </>
   )
 }

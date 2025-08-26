@@ -105,6 +105,99 @@ body {
   background-color: #e5e7eb;
 }
 
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Touch-friendly sizing */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .form-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* PWA Safe Areas */
+.pwa-safe-top {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+.pwa-safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.pwa-safe-left {
+  padding-left: max(1rem, env(safe-area-inset-left));
+}
+
+.pwa-safe-right {
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+/* Mobile Header */
+.mobile-header {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+/* Mobile optimized components */
+.mobile-optimized {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-card {
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 640px) {
+  .mobile-card {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* Responsive text */
+.text-responsive {
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+}
+
+.heading-responsive {
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
+}
+
 /* Navigation */
 .nav-link {
   display: flex;
