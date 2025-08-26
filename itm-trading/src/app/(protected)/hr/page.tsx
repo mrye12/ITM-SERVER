@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/Input'
 import { Modal } from '@/components/ui/Modal'
 import { useToast } from '@/hooks/useToast'
 import { Card } from '@/components/ui/Card'
-import { StatusBadge } from '@/components/ui/StatusBadge'
+
 import { 
   Users, 
   UserPlus, 
@@ -19,7 +19,7 @@ import {
   Edit2,
   Trash2,
   Search,
-  Filter
+
 } from 'lucide-react'
 
 interface Employee {
@@ -89,12 +89,12 @@ export default function HRPage() {
     orderBy: { column: 'created_at', ascending: false }
   })
 
-  const { data: departments, loading: departmentsLoading } = useRealtimeTable<Department>({
+  const { data: departments } = useRealtimeTable<Department>({
     table: 'departments',
     orderBy: { column: 'name', ascending: true }
   })
 
-  const { data: attendanceRecords, loading: attendanceLoading } = useRealtimeTable<AttendanceRecord>({
+  const { data: attendanceRecords } = useRealtimeTable<AttendanceRecord>({
     table: 'attendance_records',
     orderBy: { column: 'date', ascending: false }
   })

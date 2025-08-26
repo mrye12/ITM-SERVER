@@ -7,14 +7,14 @@ import { Input } from '@/components/ui/Input'
 import { Modal } from '@/components/ui/Modal'
 import { useToast } from '@/hooks/useToast'
 import { Card } from '@/components/ui/Card'
-import { StatusBadge } from '@/components/ui/StatusBadge'
+
 import { 
   MapPin, 
   Mountain, 
   FileText, 
-  AlertTriangle,
-  Calendar,
-  TrendingUp,
+
+
+
   Activity,
   Gauge,
   Layers,
@@ -22,10 +22,9 @@ import {
   Download,
   Plus,
   Edit2,
-  Trash2,
+
   Search,
-  Filter,
-  Map
+
 } from 'lucide-react'
 
 interface MiningConcession {
@@ -155,12 +154,12 @@ export default function MiningOperationsPage() {
     orderBy: { column: 'created_at', ascending: false }
   })
 
-  const { data: surveys, loading: surveysLoading, insert: insertSurvey, update: updateSurvey } = useRealtimeTable<GeologicalSurvey>({
+  const { data: surveys, insert: insertSurvey, update: updateSurvey } = useRealtimeTable<GeologicalSurvey>({
     table: 'geological_surveys',
     orderBy: { column: 'survey_date', ascending: false }
   })
 
-  const { data: monitoring, loading: monitoringLoading, insert: insertMonitoring, update: updateMonitoring } = useRealtimeTable<EnvironmentalMonitoring>({
+  const { data: monitoring, insert: insertMonitoring, update: updateMonitoring } = useRealtimeTable<EnvironmentalMonitoring>({
     table: 'environmental_monitoring',
     orderBy: { column: 'monitoring_date', ascending: false }
   })

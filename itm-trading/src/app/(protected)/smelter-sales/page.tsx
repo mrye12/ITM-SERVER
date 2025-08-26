@@ -9,12 +9,12 @@ import toast from 'react-hot-toast';
 import { 
   Factory, 
   TrendingUp, 
-  FileText, 
-  Calendar,
+ 
+
   DollarSign,
-  Scale,
-  Ship,
-  Truck,
+
+
+
   AlertCircle,
   CheckCircle,
   Clock,
@@ -23,7 +23,6 @@ import {
   Plus,
   Search,
   Download,
-  Globe,
   Building2
 } from 'lucide-react';
 
@@ -117,7 +116,7 @@ export default function SmelterSalesPage() {
   
   // Toast is imported directly from react-hot-toast
   
-  const { data: smelterSales, loading, error, insert, update, remove } = useRealtimeTable<SmelterSale>({
+  const { data: smelterSales, loading, insert, update, remove } = useRealtimeTable<SmelterSale>({
     table: 'smelter_sales',
     orderBy: { column: 'created_at', ascending: false }
   });
@@ -202,7 +201,7 @@ export default function SmelterSalesPage() {
     'Bauxite': ['40%+ Al2O3', '35-40% Al2O3'],
     'Copper Ore': ['25%+', '20-25%', '15-20%']
   };
-  const units = ['MT', 'WMT', 'DMT'];
+
   const contractTerms = ['FOB', 'CFR', 'CIF', 'EXW', 'DAP'];
   const paymentTerms = ['T/T Advance', 'L/C at Sight', 'T/T 30 days', 'T/T 60 days', 'Cash'];
   const shippingTerms = ['Bulk Carrier', 'Container', 'Barge', 'Break Bulk'];

@@ -10,12 +10,12 @@ import { useToast } from '@/hooks/useToast';
 import { 
   ShoppingCart, 
   Building, 
-  FileText, 
-  Calendar,
+ 
+
   DollarSign,
-  Scale,
-  MapPin,
-  Truck,
+
+
+
   AlertCircle,
   CheckCircle,
   Clock,
@@ -23,7 +23,6 @@ import {
   Trash2,
   Plus,
   Search,
-  Filter,
   Download
 } from 'lucide-react';
 
@@ -101,11 +100,11 @@ export default function PurchasePage() {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [commodityFilter, setCommodityFilter] = useState<string>('all');
   const [commodities, setCommodities] = useState<any[]>([]);
-  const [loadingCommodities, setLoadingCommodities] = useState(true);
+
   
   const { toast } = useToast();
   
-  const { data: purchases, loading, error, insert, update, remove } = useRealtimeTable<Purchase>({
+  const { data: purchases, loading, insert, update, remove } = useRealtimeTable<Purchase>({
     table: 'purchases',
     orderBy: { column: 'created_at', ascending: false }
   });
@@ -215,7 +214,7 @@ export default function PurchasePage() {
     'Copper Ore': ['25%+', '20-25%', '15-20%'],
     'Gold Ore': ['High Grade', 'Medium Grade', 'Low Grade']
   };
-  const units = ['MT', 'WMT', 'DMT'];
+
   const contractTerms = ['FOB', 'CFR', 'CIF', 'EXW', 'DAP'];
   const paymentTerms = ['T/T Advance', 'L/C at Sight', 'T/T 30 days', 'T/T 60 days', 'Cash'];
   const statusOptions = [

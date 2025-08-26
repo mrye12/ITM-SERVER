@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
 import { useToastSuccess, useToastError } from '@/components/ui/Toast';
 import { useRealtimeTable } from '@/hooks/useRealtimeTable';
-import { formatNumber, formatDate } from '@/lib/utils';
+import { formatNumber } from '@/lib/utils';
 import { Package, Plus, Search, Edit, Trash2, AlertTriangle } from 'lucide-react';
 
 interface StockItem {
