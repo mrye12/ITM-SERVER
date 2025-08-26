@@ -1,0 +1,113 @@
+# ITM Trading Enterprise System - Environment Variables Template
+# Copy this file to .env.local in your project root
+
+# =================================
+# SUPABASE CONFIGURATION (Required)
+# =================================
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+# =================================
+# HUGGING FACE AI CONFIGURATION
+# =================================
+# Get your token from: https://huggingface.co/settings/tokens
+HF_TOKEN=your_huggingface_api_token
+HF_MODEL=openai/gpt-oss-20b
+
+# Alternative AI models you can use:
+# HF_MODEL=microsoft/DialoGPT-large
+# HF_MODEL=facebook/blenderbot-400M-distill
+# HF_MODEL=google/flan-t5-large
+
+# =================================
+# OPTIONAL AI SERVICES
+# =================================
+# OpenAI API (if you want to use GPT-4 instead of Hugging Face)
+# OPENAI_API_KEY=your_openai_api_key
+
+# Google Gemini API (alternative AI service)
+# GOOGLE_AI_API_KEY=your_google_ai_api_key
+
+# =================================
+# SECURITY CONFIGURATION
+# =================================
+# Generate a random string for JWT signing
+NEXTAUTH_SECRET=your_random_jwt_secret_minimum_32_characters
+NEXTAUTH_URL=http://localhost:3000
+
+# CRON/SCHEDULER CONFIGURATION
+CRON_SECRET=your_secure_cron_secret_for_automated_updates
+
+# =================================
+# DATABASE CONFIGURATION (Optional)
+# =================================
+# Direct database URL (if using direct PostgreSQL connection)
+# DATABASE_URL=postgresql://user:password@host:port/database
+
+# =================================
+# EXTERNAL SERVICES (Optional)
+# =================================
+# Email service for notifications
+# SMTP_HOST=your_smtp_host
+# SMTP_PORT=587
+# SMTP_USER=your_smtp_username
+# SMTP_PASS=your_smtp_password
+
+# Cloud storage (if not using Supabase Storage)
+# AWS_ACCESS_KEY_ID=your_aws_access_key
+# AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+# AWS_REGION=your_aws_region
+# AWS_S3_BUCKET=your_s3_bucket
+
+# =================================
+# MONITORING & ANALYTICS (Optional)
+# =================================
+# Error tracking
+# SENTRY_DSN=your_sentry_dsn
+
+# Performance monitoring
+# VERCEL_ANALYTICS_ID=your_vercel_analytics_id
+
+# =================================
+# DEVELOPMENT SETTINGS
+# =================================
+# Set to 'production' when deploying
+NODE_ENV=development
+
+# Enable debug logging
+DEBUG=true
+
+# API rate limiting (requests per minute)
+API_RATE_LIMIT=100
+
+# =================================
+# BUSINESS CONFIGURATION
+# =================================
+# Company settings
+COMPANY_NAME="ITM Trading Enterprise"
+COMPANY_CURRENCY=USD
+COMPANY_TIMEZONE=Asia/Jakarta
+
+# Default admin user (created on first setup)
+DEFAULT_ADMIN_EMAIL=admin@itmtrading.com
+DEFAULT_ADMIN_PASSWORD=secure_password_change_me
+
+# =================================
+# SETUP INSTRUCTIONS
+# =================================
+# 1. Copy this file to .env.local
+# 2. Replace all 'your_*' values with actual credentials
+# 3. Generate HF_TOKEN from: https://huggingface.co/settings/tokens
+# 4. Get Supabase credentials from your project dashboard
+# 5. Run: npm run dev
+# 6. Visit: http://localhost:3000
+
+# =================================
+# SECURITY NOTES
+# =================================
+# - Never commit .env.local to version control
+# - Use different credentials for development/staging/production
+# - Rotate secrets regularly
+# - Use environment-specific service accounts
+# - Enable 2FA on all external services

@@ -1,0 +1,53 @@
+{
+  "name": "itm-trading",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "npm run sync && next build --turbopack",
+    "build-only": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint",
+    "sync": "node scripts/zero-manual.js",
+    "tahap4": "node scripts/tahap4-setup.js",
+    "deploy": "npm run build && npm run start",
+    "deploy-production": "npm run sync && npm run build && npm run start"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.56.0",
+    "@types/formidable": "^3.4.5",
+    "chart.js": "^4.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.2.1",
+    "eventsource-parser": "^3.0.5",
+    "formidable": "^3.5.4",
+    "jspdf": "^3.0.1",
+    "lucide-react": "^0.541.0",
+    "next": "15.5.0",
+    "openid-client": "^6.6.4",
+    "pg": "^8.16.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-hook-form": "^7.62.0",
+    "react-hot-toast": "^2.6.0",
+    "recharts": "^3.1.2",
+    "tailwind-merge": "^3.3.1",
+    "undici": "^7.15.0",
+    "zod": "^4.1.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20.19.11",
+    "@types/react": "^19.1.11",
+    "@types/react-dom": "^19.1.7",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

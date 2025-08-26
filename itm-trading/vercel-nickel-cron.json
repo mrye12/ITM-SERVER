@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/nickel/auto-update",
+      "schedule": "0 */30 * * * *"
+    }
+  ]
+}
