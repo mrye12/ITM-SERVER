@@ -59,21 +59,16 @@ export default function SalesPage() {
     orderBy: { column: 'created_at', ascending: false }
   })
 
-  // Mock data for customers and products (you can replace with real API calls)
-  const [customers] = useState<Customer[]>([
-    { id: '1', name: 'PT Semen Indonesia', email: 'contact@semenindonesia.com', company: 'PT Semen Indonesia' },
-    { id: '2', name: 'PT Krakatau Steel', email: 'info@krakatau-steel.com', company: 'PT Krakatau Steel' },
-    { id: '3', name: 'PT Antam', email: 'sales@antam.com', company: 'PT Antam' },
-    { id: '4', name: 'PT Freeport Indonesia', email: 'contact@freeport.com', company: 'PT Freeport Indonesia' }
-  ])
+  // Load customers and products from Supabase
+  const { data: customers, loading: customersLoading } = useRealtimeTable<Customer>({
+    table: 'customers',
+    orderBy: { column: 'name', ascending: true }
+  })
 
-  const [products] = useState<Product[]>([
-    { id: '1', name: 'Coal Grade A', category: 'Coal', price: 85, unit: 'MT' },
-    { id: '2', name: 'Coal Grade B', category: 'Coal', price: 75, unit: 'MT' },
-    { id: '3', name: 'Nickel Ore', category: 'Nickel', price: 120, unit: 'MT' },
-    { id: '4', name: 'Iron Ore', category: 'Iron', price: 95, unit: 'MT' },
-    { id: '5', name: 'Copper Concentrate', category: 'Copper', price: 6500, unit: 'MT' }
-  ])
+  const { data: products, loading: productsLoading } = useRealtimeTable<Product>({
+    table: 'commodities',
+    orderBy: { column: 'name', ascending: true }
+  })
 
   const { register, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<SalesForm>({
     defaultValues: {

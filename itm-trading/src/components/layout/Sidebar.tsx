@@ -3,7 +3,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { supabaseBrowser } from "@/lib/supabase/client"
 import { useState, useEffect } from "react"
-import { getMockProfile } from "@/lib/mock-auth"
+
 
 export default function Sidebar() {
   const pathname = usePathname()
@@ -25,10 +25,8 @@ export default function Sidebar() {
           }
         }
       } catch (error) {
-        console.warn('Supabase failed, using mock data:', error)
-        // Use mock data for demo
-        const mockProfile = getMockProfile()
-        setUserRole(mockProfile.role)
+        console.error('Authentication failed:', error)
+        setUserRole('')
       }
     }
     getUser()

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { supabaseBrowser } from "@/lib/supabase/client"
 import { NotificationBell } from "@/components/notifications/NotificationCenter"
-import { getMockProfile } from "@/lib/mock-auth"
+
 
 export default function Header() {
   const [user, setUser] = useState<{ id: string; email: string } | null>(null)
@@ -31,11 +31,9 @@ export default function Header() {
             .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
         }
       } catch (error) {
-        console.warn('Supabase failed, using mock data:', error)
-        // Use mock data for demo
-        const mockProfile = getMockProfile()
-        setUser({ id: mockProfile.id, email: mockProfile.email })
-        setProfile(mockProfile)
+        console.error('Authentication failed:', error)
+        setUser(null)
+        setProfile(null)
       }
     }
     getUser()

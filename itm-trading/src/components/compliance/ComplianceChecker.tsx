@@ -66,16 +66,16 @@ export default function ComplianceChecker({ onResult, defaultValues }: Complianc
 
   const loadCommodities = async () => {
     try {
-      // Would load from Supabase in real implementation
-      const mockCommodities = [
-        { id: '1', kode_komoditas: 'COAL-THERMAL', nama_komoditas: 'Batubara Thermal', hs_code: '2701.12' },
-        { id: '2', kode_komoditas: 'FERRO-NICKEL', nama_komoditas: 'Ferro Nikel', hs_code: '7202.60' },
-        { id: '3', kode_komoditas: 'NICKEL-ORE', nama_komoditas: 'Bijih Nikel', hs_code: '2604.00' },
-        { id: '4', kode_komoditas: 'TIN-INGOT', nama_komoditas: 'Timah Batangan', hs_code: '8001.10' }
-      ];
-      setCommodities(mockCommodities);
+      const response = await fetch('/api/commodities');
+      if (!response.ok) {
+        throw new Error('Failed to load commodities');
+      }
+      
+      const commoditiesData = await response.json();
+      setCommodities(commoditiesData);
     } catch (error) {
       console.error('Error loading commodities:', error);
+      setCommodities([]);
     }
   };
 

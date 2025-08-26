@@ -82,52 +82,17 @@ export default function ExecutiveDashboard() {
 
   const loadDashboardData = async () => {
     try {
-      // In a real app, this would be an API call
-      const mockData: DashboardData = {
-        kpis: {
-          totalRevenue: 125000000000, // 125B IDR
-          revenueGrowth: 12.5,
-          totalOrders: 1247,
-          ordersGrowth: 8.3,
-          activeCustomers: 89,
-          customerGrowth: 5.2,
-          inventoryValue: 45000000000, // 45B IDR
-          inventoryChange: -2.1
-        },
-        salesData: [
-          { month: '2025-01', revenue: 98000000000, orders: 234, customers: 67 },
-          { month: '2025-02', revenue: 112000000000, orders: 267, customers: 72 },
-          { month: '2025-03', revenue: 125000000000, orders: 289, customers: 78 },
-          { month: '2025-04', revenue: 118000000000, orders: 251, customers: 74 },
-          { month: '2025-05', revenue: 134000000000, orders: 298, customers: 81 },
-          { month: '2025-06', revenue: 142000000000, orders: 312, customers: 85 }
-        ],
-        commodityData: [
-          { name: 'Coal Grade A', value: 45000000000, percentage: 35.2, trend: 'up' },
-          { name: 'Nickel Matte', value: 38000000000, percentage: 29.7, trend: 'up' },
-          { name: 'Iron Ore', value: 25000000000, percentage: 19.5, trend: 'stable' },
-          { name: 'Tin Ingot', value: 20000000000, percentage: 15.6, trend: 'down' }
-        ],
-        pendingApprovals: [
-          { id: 'PO-2025-001', type: 'Purchase Order', amount: 2500000000, requestor: 'John Doe', daysWaiting: 3, priority: 'high' },
-          { id: 'SO-2025-089', type: 'Sales Order', amount: 1800000000, requestor: 'Jane Smith', daysWaiting: 1, priority: 'medium' },
-          { id: 'EXP-2025-045', type: 'Expense Claim', amount: 150000000, requestor: 'Mike Johnson', daysWaiting: 5, priority: 'low' }
-        ],
-        complianceStatus: {
-          compliant: 87,
-          pending: 8,
-          nonCompliant: 5
-        },
-        shipmentStatus: {
-          inTransit: 23,
-          delivered: 156,
-          delayed: 4
-        }
-      };
+      // Fetch real data from Supabase API
+      const response = await fetch('/api/dashboard/executive');
+      if (!response.ok) {
+        throw new Error('Failed to load dashboard data');
+      }
       
-      setData(mockData);
+      const dashboardData = await response.json();
+      setData(dashboardData);
     } catch (error) {
       console.error('Error loading dashboard data:', error);
+      setData(null);
     } finally {
       setLoading(false);
     }

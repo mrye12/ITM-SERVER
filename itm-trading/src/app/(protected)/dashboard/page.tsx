@@ -29,11 +29,8 @@ export default async function DashboardPage() {
     customers = customersData || []
     salesOrders = salesOrdersData || []
   } catch (error) {
-    console.warn('Dashboard data loading failed, using mock data:', error)
-    // Use mock data for demo
-    profile = { full_name: 'Demo Administrator', role: 'admin' }
-    customers = Array.from({ length: 15 }, (_, i) => ({ id: i.toString() }))
-    salesOrders = Array.from({ length: 8 }, (_, i) => ({ id: i.toString(), total_usd: 150000 + (i * 50000) }))
+    console.error('Dashboard data loading failed:', error)
+    throw error // Re-throw to let the error boundary handle it
   } 
   
   let basicSales: { id: string; customer_name?: string; product?: string; quantity?: number; price?: number; created_at?: string }[] = []
@@ -50,24 +47,9 @@ export default async function DashboardPage() {
       recentActivity = activityData || []
     }
   } catch (error) {
-    console.warn('Additional dashboard data failed, using mock data:', error)
-    basicSales = Array.from({ length: 5 }, (_, i) => ({
-      id: i.toString(),
-      customer_name: `Customer ${i + 1}`,
-      product: 'Nickel Ore',
-      quantity: 1000 + (i * 500),
-      price: 15000 + (i * 1000),
-      created_at: new Date().toISOString()
-    }))
-    
-    if (hasRole && gate.role === 'admin') {
-      recentActivity = Array.from({ length: 5 }, (_, i) => ({
-        id: i.toString(),
-        action: 'login',
-        actor_email: 'demo@itmtrading.com',
-        created_at: new Date().toISOString()
-      }))
-    }
+    console.error('Additional dashboard data failed:', error)
+    basicSales = []
+    recentActivity = []
   }
 
   // Calculate statistics

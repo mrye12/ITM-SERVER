@@ -74,21 +74,16 @@ export default function OrdersPage() {
     orderBy: { column: 'created_at', ascending: false }
   })
 
-  // Mock data for customers and products  
-  const [customers] = useState<Customer[]>([
-    { id: '1', name: 'PT Semen Indonesia', contact_person: 'Ahmad Sutanto', email: 'contact@semenindonesia.com', country: 'Indonesia' },
-    { id: '2', name: 'Singapore Minerals Ltd', contact_person: 'Lim Wei Chen', email: 'info@sg-minerals.com', country: 'Singapore' },
-    { id: '3', name: 'Malaysia Trading Co', contact_person: 'Raja Abdullah', email: 'sales@malaysia-trading.com', country: 'Malaysia' },
-    { id: '4', name: 'Thai Steel Corporation', contact_person: 'Somchai Tanaka', email: 'procurement@thai-steel.com', country: 'Thailand' }
-  ])
+  // Load customers and products from Supabase
+  const { data: customers, loading: customersLoading } = useRealtimeTable<Customer>({
+    table: 'customers',
+    orderBy: { column: 'name', ascending: true }
+  })
 
-  const [products] = useState<Product[]>([
-    { id: '1', name: 'Coal Grade A', spec: 'CV 6300 kcal/kg', unit: 'MT', price_usd: 85, category: 'Coal' },
-    { id: '2', name: 'Coal Grade B', spec: 'CV 5800 kcal/kg', unit: 'MT', price_usd: 75, category: 'Coal' },
-    { id: '3', name: 'Nickel Ore 1.8%', spec: 'Ni 1.8% min', unit: 'WMT', price_usd: 45, category: 'Nickel' },
-    { id: '4', name: 'Iron Ore 62%', spec: 'Fe 62% min', unit: 'DMT', price_usd: 95, category: 'Iron' },
-    { id: '5', name: 'Copper Concentrate', spec: 'Cu 28% min', unit: 'DMT', price_usd: 6500, category: 'Copper' }
-  ])
+  const { data: products, loading: productsLoading } = useRealtimeTable<Product>({
+    table: 'commodities',
+    orderBy: { column: 'name', ascending: true }
+  })
 
   const deliveryTerms = ['FOB', 'CFR', 'CIF', 'DAP', 'DDP']
   const ports = [
