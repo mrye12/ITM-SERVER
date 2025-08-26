@@ -1,0 +1,6 @@
+scripts/
+*.js
+node_modules/
+.next/
+dist/
+build/
