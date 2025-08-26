@@ -10,6 +10,15 @@
 require('dotenv').config({ path: '.env.local' })
 const { createClient } = require('@supabase/supabase-js')
 
+// Check if we're in build environment
+const isBuildEnvironment = !process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY
+
+if (isBuildEnvironment) {
+  console.log('🏗️ Build environment detected - skipping database sync')
+  console.log('✅ Database sync will run on first application start')
+  process.exit(0)
+}
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY,

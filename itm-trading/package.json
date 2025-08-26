@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "sync": "node scripts/zero-manual.js",
+    "demo": "node scripts/create-demo-user.js",
     "tahap4": "node scripts/tahap4-setup.js",
     "deploy": "npm run build && npm run start",
     "deploy-production": "npm run sync && npm run build && npm run start"

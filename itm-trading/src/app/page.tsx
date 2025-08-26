@@ -38,10 +38,10 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/compliance">
+            <Link href="/login">
               <button className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
                 <Shield className="h-5 w-5" />
-                Compliance Center
+                Login to Enterprise System
                 <ArrowRight className="h-4 w-4" />
               </button>
             </Link>
@@ -139,17 +139,17 @@ export default function HomePage() {
             Quick Access
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/compliance" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-              Compliance Center
+            <Link href="/login" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              🔐 Enterprise Login
             </Link>
             <Link href="/dashboard" className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-              Main Dashboard
+              📊 Main Dashboard
             </Link>
-            <Link href="/finance" className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
-              Finance Module
+            <Link href="/hr" className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+              👥 HR Management
             </Link>
-            <Link href="/equipment" className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors">
-              Equipment Monitor
+            <Link href="/commodity-trading" className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors">
+              💰 Commodity Trading
             </Link>
           </div>
         </div>
