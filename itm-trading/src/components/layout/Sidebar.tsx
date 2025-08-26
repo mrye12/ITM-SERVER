@@ -114,6 +114,14 @@ export default function Sidebar({ isOpen = true, onClose, isMobile = false }: Si
       ]
     },
     {
+      title: "📋 Task & Workflow Management",
+      items: [
+        { href: "/tasks", label: "Task Management", icon: "✅", roles: ["admin", "manager", "staff"] },
+        { href: "/workflows", label: "Workflow Designer", icon: "🔄", roles: ["admin", "manager"] },
+        { href: "/approvals", label: "Approval Center", icon: "👍", roles: ["admin", "manager", "staff"] },
+      ]
+    },
+    {
       title: "👥 Human Resources",
       items: [
         { href: "/hr", label: "Human Resources", icon: "👥", roles: ["admin", "manager"] },
